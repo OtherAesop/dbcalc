@@ -51,24 +51,18 @@ class DBCalc:
 if __name__ == "__main__":
     # Driver code
 
-    # These lines illustrate usage
-
-    # db_calc = DBCalc(1.0, destination_db=60)
-    # print(f"You hear a sound a meter away from you that you measure to be 60 dbA at 1 meter, how loud is it at the source?")
-    # print(f"A 60 dbA sound 1 meter away from the source is {round(db_calc.get_sound_at_source(), 2)} dbA at the source.")
-
-    # db_calc = DBCalc(2.0, source_db=60)
-    # print(f"You hear a sound that is 60 dbA at the source from 2 meters away. How loud is it when it reaches your ear?")
-    # print(f"A 60 dbA sound is {round(db_calc.get_sound_at_destination(), 2)} dbA when you are 2 meters away from the source.")
+    # These lines illustrate usage & concept
 
     # TODO: implement cmd line args + test cases.
 
-    # 110 source, .6906 m dist -> 94.3 DB
+    # You hear a sound that is 110 dbA at the source from 2/3 meters away. How loud is it when it reaches your ear?
+    # 110 source, .6906 m dist -> 94.3 dbA
     source = 110 # dbA
     dist = .6096 # meters
     db_calc = DBCalc(dist, source_db=source)
     print(f"A {source} dbA sound is {round(db_calc.get_sound_at_destination(), 2)} dbA after travelling {dist} meter(s).")
 
+    # You hear a sound a meter away from you that you measure to be 60 dbA at 1 meter, how loud is it at the source?
     # 60 destination, 1 m dist -> 80 dbA
     dest = 60 # dbA
     dist_to_source = 1 # meters
