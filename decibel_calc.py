@@ -63,14 +63,14 @@ if __name__ == "__main__":
 
     # TODO: implement cmd line args + test cases.
 
-    # 110 source, .6 m dist
+    # 110 source, .6906 m dist -> 94.3 DB
     source = 110 # dbA
-    dist = 1 # meters
+    dist = .6096 # meters
     db_calc = DBCalc(dist, source_db=source)
     print(f"A {source} dbA sound is {round(db_calc.get_sound_at_destination(), 2)} dbA after travelling {dist} meter(s).")
 
-    # 110 source, .6 m dist
-    dest = 110 # dbA
-    dist_to_source = .6906 # meters
+    # 60 destination, 1 m dist -> 80 dbA
+    dest = 60 # dbA
+    dist_to_source = 1 # meters
     db_calc = DBCalc(dist_to_source, destination_db=dest)
     print(f"A {dest} dbA sound is {round(db_calc.get_sound_at_source(), 2)} dbA at its source {dist_to_source} meter(s) away.")
