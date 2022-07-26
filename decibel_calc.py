@@ -58,7 +58,7 @@ if __name__ == "__main__":
 
     # These lines illustrate usage & concept
 
-    # TODO: implement cmd line args + test cases.
+    # TODO: implement cmd line args
 
     # You hear a sound that is 110 dbA at the source from 2/3 meters away. How loud is it when it reaches your ear?
     # 110 source, .6906 m dist -> 94.3 dbA
