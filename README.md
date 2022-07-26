@@ -4,6 +4,10 @@ I saw a physics lecture on calculating the volume of sound at a given distance a
 
 For now see source code comments for usage instructions.
 
+# Limits
+
+The minimum output this program can give is -25 dbA or its equivalent intensity in w/m^2, well past the threshold of human hearing. For scientific purposes where you might need more range I recommend you use something besides my weekend project.
+
 ## Sources 
 
 https://www.youtube.com/watch?v=shnaAp498OU&t=78s

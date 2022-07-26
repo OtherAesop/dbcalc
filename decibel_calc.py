@@ -1,5 +1,4 @@
 import math
-import sys
 
 class DBCalc:
 
@@ -18,16 +17,22 @@ class DBCalc:
         # reference values
         self.I_reference = 1E-12 # W/m^2
         self.source_dist = .1 # meters
+        self.min_intensity = 3.1622776601683794E-15 # -25dbA is the minimum value we can return
+        self.min_db = -25
 
     def _db_from_intensity(self, intensity: float) -> float:
-        """Get db from intensity measured in watts per square meter."""
-        power = max(intensity, 0.0) # no power less than 0
+        """Get db from intensity measured in watts per square meter.
+        
+        Minimum return value is -25"""
+        power = max(intensity, self.min_intensity) # min output is -25 dbA
         return 10 * math.log((power/self.I_reference), 10)
 
     def _intensity_from_db(self, dbA: float) -> float:
-        """Get intensity in w/m^2 from a value measured in A weighted decibels."""
-
-        return math.pow(10, dbA/10) * self.I_reference
+        """Get intensity in w/m^2 from a value measured in A weighted decibels.
+        
+        Minimum return value is 3.1622776601683794E-15"""
+        db = max(dbA, self.min_db)
+        return math.pow(10, db/10) * self.I_reference
 
     def get_sound_at_source(self) -> float:
         """Returns the volume of the sound at its source in A weighted decibels.
@@ -36,7 +41,7 @@ class DBCalc:
 
         assert self.db_destination, "You must give the dbA at the destination to call `get_sound_at_source`"        
 
-        return self.db_destination + (20 * math.log(self.dist_traveled/self.source_dist, 10))
+        return max(self.db_destination + (20 * math.log(self.dist_traveled/self.source_dist, 10)), self.min_db)
 
     def get_sound_at_destination(self) -> float:
         """Returns the volume of the source sound at the destination in A weighted decibels
@@ -45,7 +50,7 @@ class DBCalc:
 
         assert self.db_source, "You must give the dbA at the source to call `get_sound_at_destination`"
 
-        return self.db_source + (20 * math.log(self.source_dist/self.dist_traveled, 10))
+        return max(self.db_source + (20 * math.log(self.source_dist/self.dist_traveled, 10)), self.min_db)
 
 
 if __name__ == "__main__":
@@ -68,3 +73,13 @@ if __name__ == "__main__":
     dist_to_source = 1 # meters
     db_calc = DBCalc(dist_to_source, destination_db=dest)
     print(f"A {dest} dbA sound is {round(db_calc.get_sound_at_source(), 2)} dbA at its source {dist_to_source} meter(s) away.")
+
+    dest = 40 # dbA
+    dist_to_source = 1 # meters
+    db_calc = DBCalc(dist_to_source, destination_db=dest)
+    print(f"A {dest} dbA sound is {round(db_calc.get_sound_at_source(), 2)} dbA at its source {dist_to_source} meter(s) away.")
+
+    source = 60 # dbA
+    dist = 1 # meters
+    db_calc = DBCalc(dist, source_db=source)
+    print(f"A {source} dbA sound is {round(db_calc.get_sound_at_destination(), 2)} dbA after travelling {dist} meter(s).")
