@@ -30,7 +30,7 @@ permissions:
   contents: read
 
 jobs:
-  run-calculation1:
+  calculate-at-source:
     if: inputs.calculate == 'source'
 
     runs-on: ubuntu-latest
@@ -46,7 +46,7 @@ jobs:
       run: |
         python decibel_calc.py --calculate ${{ inputs.calculate }} --source ${{ inputs.source }} --destination ${{ inputs.destination }}  --distance ${{ inputs.distance }}
 
-  run-calculation2:
+  calculate-at-destination:
     if: inputs.calculate == 'destination'
 
     runs-on: ubuntu-latest
