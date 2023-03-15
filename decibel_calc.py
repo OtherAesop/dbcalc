@@ -1,4 +1,5 @@
 import math
+import argparse
 
 class DBCalc:
 
@@ -58,28 +59,49 @@ if __name__ == "__main__":
 
     # These lines illustrate usage & concept
 
-    # TODO: implement cmd line args
+    parser = argparse.ArgumentParser(description='Description of your program')
+    parser.add_argument('-c','--calculate', help='calculation mode', choices=['source', 'destination'], required=True)
+    parser.add_argument('-s','--source', help='Volume at the source in dbA', type=float, required=True)
+    parser.add_argument('-d','--destination', help='Volume at the desintation in dbA', type=float, required=True)
+    parser.add_argument('-D','--distance', help='Distance from the source to the destination in meters', type=float, required=True)
+    args = vars(parser.parse_args())
+
+
+    db_calc = DBCalc(args["distance"], args["destination"], args["source"])
+    
+    if args["calculate"] == "source":
+        print(f'A {args["destination"]} dbA sound is {round(db_calc.get_sound_at_source(), 2)} dbA at its source {args["distance"]} meter(s) away.')
+    elif args["calculate"] == "destination":
+        print(f'A {args["source"]} dbA sound is {round(db_calc.get_sound_at_destination(), 2)} dbA after travelling {args["distance"]} meter(s).')
+    else:
+        print(f"uhhhh this is probably a bug... {args}")
+
 
     # You hear a sound that is 110 dbA at the source from 2/3 meters away. How loud is it when it reaches your ear?
     # 110 source, .6906 m dist -> 94.3 dbA
-    source = 110 # dbA
-    dist = .6096 # meters
-    db_calc = DBCalc(dist, source_db=source)
-    print(f"A {source} dbA sound is {round(db_calc.get_sound_at_destination(), 2)} dbA after travelling {dist} meter(s).")
+    #source = 110 # dbA
+    #dist = .6096 # meters
+    #db_calc = DBCalc(dist, source_db=source)
+    #print(f"A {source} dbA sound is {round(db_calc.get_sound_at_destination(), 2)} dbA after travelling {dist} meter(s).")
 
     # You hear a sound a meter away from you that you measure to be 60 dbA at 1 meter, how loud is it at the source?
     # 60 destination, 1 m dist -> 80 dbA
-    dest = 60 # dbA
-    dist_to_source = 1 # meters
-    db_calc = DBCalc(dist_to_source, destination_db=dest)
-    print(f"A {dest} dbA sound is {round(db_calc.get_sound_at_source(), 2)} dbA at its source {dist_to_source} meter(s) away.")
+    #dest = 60 # dbA
+    #dist_to_source = 1 # meters
+    #db_calc = DBCalc(dist_to_source, destination_db=dest)
+    #print(f"A {dest} dbA sound is {round(db_calc.get_sound_at_source(), 2)} dbA at its source {dist_to_source} meter(s) away.")
 
-    dest = 40 # dbA
-    dist_to_source = 1 # meters
-    db_calc = DBCalc(dist_to_source, destination_db=dest)
-    print(f"A {dest} dbA sound is {round(db_calc.get_sound_at_source(), 2)} dbA at its source {dist_to_source} meter(s) away.")
+    #dest = 40 # dbA
+    #dist_to_source = 1 # meters
+    #db_calc = DBCalc(dist_to_source, destination_db=dest)
+    #print(f"A {dest} dbA sound is {round(db_calc.get_sound_at_source(), 2)} dbA at its source {dist_to_source} meter(s) away.")
 
-    source = 60 # dbA
-    dist = 1 # meters
-    db_calc = DBCalc(dist, source_db=source)
-    print(f"A {source} dbA sound is {round(db_calc.get_sound_at_destination(), 2)} dbA after travelling {dist} meter(s).")
+    #source = 60 # dbA
+    #dist = 1 # meters
+    #db_calc = DBCalc(dist, source_db=source)
+    #print(f"A {source} dbA sound is {round(db_calc.get_sound_at_destination(), 2)} dbA after travelling {dist} meter(s).")
+
+    #source = 71 # dbA
+    #dist = .2 # meters
+    #db_calc = DBCalc(dist, source_db=source)
+    #print(f"A {source} dbA sound is {round(db_calc.get_sound_at_destination(), 2)} dbA after travelling {dist} meter(s).")
