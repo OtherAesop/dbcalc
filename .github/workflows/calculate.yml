@@ -5,7 +5,7 @@ on:
     inputs:
       calculate:
         type: choice
-        description: What to calculate between X and Y
+        description: What to calculate between the source and destination
         required: true
         options: 
         - source
@@ -28,6 +28,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   calculate-at-source:
