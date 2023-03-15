@@ -14,7 +14,7 @@ I added a workflow based api to make requests to the program but am unsure if I 
 
 For now, fork this repo and use it yourself or download the code and call it like the automation does.
 
-Forking to your own GH account is probably the quickest way to get numbers out of this program. You will want to call it from [this](https://github.com/OtherAesop/dbcalc/actions/workflows/calculate.yml) area after you fork it.
+Forking to your own GH account is probably the quickest way to get numbers out of this program. You will want to call it from [this](https://github.com/OtherAesop/dbcalc/actions/workflows/calculate.yml) area after you fork it. You will get output from [this](https://github.com/OtherAesop/dbcalc/actions/runs/4423335061/jobs/7755969188#step:4:12) section of the automation.
 
 If you are tech-savvy feel free to download and hack away!
 
