@@ -44,7 +44,7 @@ jobs:
 
     - name: Calculate volume at source
       run: |
-        python decibel_calc.py --calculate source --source ${{ inputs.source }} --destination ${{ inputs.destination }}  --distance ${{ inputs.distance }}
+        python decibel_calc.py --calculate ${{ inputs.calculate }} --source ${{ inputs.source }} --destination ${{ inputs.destination }}  --distance ${{ inputs.distance }}
 
   run-calculation2:
     if: ${{ inputs.calculate }} == 'destination'
@@ -60,4 +60,4 @@ jobs:
 
     - name: Calculate volume at destination
       run: |
-        python decibel_calc.py --calculate destination --source ${{ inputs.source }} --destination ${{ inputs.destination }}  --distance ${{ inputs.distance }}
+        python decibel_calc.py --calculate ${{ inputs.calculate }} --source ${{ inputs.source }} --destination ${{ inputs.destination }}  --distance ${{ inputs.distance }}
