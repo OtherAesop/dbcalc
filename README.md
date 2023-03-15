@@ -10,7 +10,13 @@ The minimum output this program can give is -25 dbA or its equivalent intensity 
 
 # TODO
 
-I plan on adding in cmd line args at some point. For now you can download the code and hack away to get the values you are after.
+I added a workflow based api to make requests to the program but am unsure if I can let the general public call this.
+
+For now, fork this repo and use it yourself or download the code and call it like the automation does.
+
+Forking to your own GH account is probably the quickest way to get numbers out of this program. You will want to call it from [this](https://github.com/OtherAesop/dbcalc/actions/workflows/calculate.yml) area after you fork it.
+
+If you are tech-savvy feel free to download and hack away!
 
 ## Example output
 
